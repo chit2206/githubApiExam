@@ -68,9 +68,9 @@ public class GetRepo {
 		Response  rs=RestAssured.given().header("Authorization","Bearer"+Util.getApplicationProperty("BearerToken")).when().get();
 		Assert.assertEquals(rs.statusCode(), 200);
 		rs.then().assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schema.json"));
-		List<String> orderLevelReasons = rs.jsonPath().getList("id");
-		//orderLevelReasons=
-		int count=orderLevelReasons.size();
+		List<String> totalRepo = rs.jsonPath().getList("id");
+		
+		int count=totalRepo.size();
 		System.out.println("no of repository"+count);
 		
 		Assert.assertEquals(rs.contentType(), "application/json; charset=utf-8");
